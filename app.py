@@ -44,7 +44,7 @@ if page == "Overview":
     Quantumela follows a phased methodology: Discovery, Mapping, Testing, Validation, and Deployment.
     Each phase is powered by smart tools and SAP best practices to ensure integrity and minimal downtime.
     """)
-    st.image("https://www.gurobi.com/wp-content/uploads/2021/10/Data-Migration-Flowchart-1024x576.png", caption="Sample Data Migration Lifecycle")
+    st.image("Employee_Central_Data_Migration.png", caption="Employee Central Migration Architecture", use_column_width=True)
 
 elif page == "Data Migration":
     st.header("📂 Employee Central Data Migration")
@@ -57,7 +57,7 @@ elif page == "Data Migration":
     - Use of pre-migration templates, mapping sheets and config files
     - Multi-layer validation during ETL
     """)
-    st.image("https://spinifexit.com/wp-content/uploads/2021/08/SpinifexIT-data-flow-diagram-employee-central-data-migration.png", caption="Foundation to EC Mapping Flow")
+    st.image("Employee_Central_Data_Migration2.png", caption="Process Flow for EC Object Handling", use_column_width=True)
 
     with st.expander("📁 Foundation Objects"):
         st.markdown("""
@@ -110,8 +110,7 @@ elif page == "Validation":
     - Referential integrity checks across Position, Job Info, Org data
     - Business rules: date logic, cross-field dependency
     """)
-
-    st.image("https://spinifexit.com/wp-content/uploads/2021/08/SAP-data-validation-lifecycle.png", caption="End-to-End Validation Process")
+    st.image("validation_lifecycle.png", caption="Validation Lifecycle Overview", use_column_width=True)
 
     st.file_uploader("Upload Migrated Dataset", type=["csv", "xlsx"], key="val_data")
     st.file_uploader("Upload Validation Rules (CSV/JSON)", type=["csv", "json"], key="val_rules")
@@ -135,9 +134,14 @@ elif page == "Variance Monitoring":
     - Highlight critical fields
     - Support delta resolution tracking
     """)
-    st.video("https://www.youtube.com/watch?v=4ZJQ0XQ1-HE")
+    st.image("variance_monitoring.png", caption="Variance Monitoring Workflow", use_column_width=True)
 
     st.file_uploader("Upload SAP ECC Extract", type=["csv", "xlsx"], key="source")
+    st.file_uploader("Upload SAP SF Extract", type=["csv", "xlsx"], key="target")
+
+    if st.button("Run Variance Analysis"):
+        st.success("Variance check complete. Delta report will be displayed here.")
+
 
 if page == "Data Migration":
     st.header("📂 Employee Central Data Migration")
