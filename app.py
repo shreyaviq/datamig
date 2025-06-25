@@ -50,6 +50,14 @@ elif page == "Data Migration":
     st.header("📂 Employee Central Data Migration")
     st.markdown("""
     Upload source files for migration below. Files remain private and are used only for analysis.
+if page == "Data Migration":
+    st.header("📂 Employee Central Data Migration")
+
+    # Diagram 1
+    st.image("Employee_Central_Data_Migration.png", caption="Employee Central Migration Architecture", use_column_width=True)
+
+    # Diagram 2
+    st.image("Employee_Central_Data_Migration2.png", caption="Process Flow for EC Object Handling", use_column_width=True)
 
     **Services We Provide:**
     - Object-wise transformation based on SAP EC schema
