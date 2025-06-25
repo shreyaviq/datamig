@@ -149,9 +149,6 @@ if page == "Data Migration":
     # Diagram 1
     st.image("Employee_Central_Data_Migration.png", caption="Employee Central Migration Architecture", use_column_width=True)
 
-    # Diagram 2
-    st.image("Employee_Central_Data_Migration2.png", caption="Process Flow for EC Object Handling", use_column_width=True)
-
     st.file_uploader("Upload SAP SF Extract", type=["csv", "xlsx"], key="target")
 
     if st.button("Run Variance Analysis"):
