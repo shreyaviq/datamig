@@ -44,42 +44,74 @@ if page == "Overview":
     Quantumela follows a phased methodology: Discovery, Mapping, Testing, Validation, and Deployment.
     Each phase is powered by smart tools and SAP best practices to ensure integrity and minimal downtime.
     """)
+    st.image("https://www.gurobi.com/wp-content/uploads/2021/10/Data-Migration-Flowchart-1024x576.png", caption="Sample Data Migration Lifecycle")
 
 elif page == "Data Migration":
     st.header("📂 Employee Central Data Migration")
-    st.markdown("Upload source files for migration below. Files remain private and are used only for analysis.")
     st.markdown("""
-    Drag and drop or browse files to upload:
-    - Use CSV/XLSX formats
-    - Ensure all reference IDs (e.g., Job Codes, Location IDs) are accurate and unique
+    Upload source files for migration below. Files remain private and are used only for analysis.
+
+    **Services We Provide:**
+    - Object-wise transformation based on SAP EC schema
+    - Unique key reconciliation across legacy and target systems
+    - Use of pre-migration templates, mapping sheets and config files
+    - Multi-layer validation during ETL
     """)
+    st.image("https://spinifexit.com/wp-content/uploads/2021/08/SpinifexIT-data-flow-diagram-employee-central-data-migration.png", caption="Foundation to EC Mapping Flow")
 
     with st.expander("📁 Foundation Objects"):
+        st.markdown("""
+        - Company, Business Unit, Division, Department, Cost Center
+        - Location and Legal Entity
+        - Parent-child hierarchy setup
+        """)
         st.file_uploader("Upload Foundation Data (CSV/XLSX)", type=["csv", "xlsx"], key="foundation")
 
     with st.expander("📁 Position Objects"):
+        st.markdown("""
+        - Position ID, Title, Org Chart mappings
+        - Job Relationships (Matrix, Manager, etc.)
+        - Effective start dates and status
+        """)
         st.file_uploader("Upload Position Data (CSV/XLSX)", type=["csv", "xlsx"], key="position")
 
     with st.expander("📁 Employee Objects"):
+        st.markdown("""
+        - Personal Information: Name, DOB, Gender
+        - Job Info: Department, Position, Manager
+        - Comp Info: Salary, Pay Grade, Currency
+        """)
         st.file_uploader("Upload Employee Data (CSV/XLSX)", type=["csv", "xlsx"], key="employee")
 
     with st.expander("💰 EC Payroll"):
+        st.markdown("""
+        - Pay Components & Frequency
+        - Assignment to Jobs or Individuals
+        - Payroll Calendar Mapping
+        """)
         st.file_uploader("Upload Payroll Data (CSV/XLSX)", type=["csv", "xlsx"], key="payroll")
 
     with st.expander("⏱️ EC Time & Attendance"):
+        st.markdown("""
+        - Time Type Mapping
+        - Shift and Leave Balance Validation
+        - Time Account Setup
+        """)
         st.file_uploader("Upload Time & Attendance (CSV/XLSX)", type=["csv", "xlsx"], key="time")
 
 elif page == "Validation":
     st.header("✅ Validation Services")
     st.markdown("""
-    Quantumela applies data validation rules to catch:
-    - Field-level errors (length, nulls, types)
-    - Missing links between objects
-    - Format mismatches and non-compliant values
-    - Business logic violations based on custom rules
+    Quantumela applies rule-based validations at field and relationship level. 
 
-    Simply upload the extracted/migrated data and optionally the rule set:
+    **Validation Checks Include:**
+    - Schema compliance with SAP EC standards
+    - Missing critical fields or bad formats (e.g., phone number, email, currency code)
+    - Referential integrity checks across Position, Job Info, Org data
+    - Business rules: date logic, cross-field dependency
     """)
+
+    st.image("https://spinifexit.com/wp-content/uploads/2021/08/SAP-data-validation-lifecycle.png", caption="End-to-End Validation Process")
 
     st.file_uploader("Upload Migrated Dataset", type=["csv", "xlsx"], key="val_data")
     st.file_uploader("Upload Validation Rules (CSV/JSON)", type=["csv", "json"], key="val_rules")
@@ -90,13 +122,20 @@ elif page == "Validation":
 elif page == "Variance Monitoring":
     st.header("📊 Variance Monitoring")
     st.markdown("""
-    Identify differences between source and target systems:
-    - Missing records
-    - Value differences (pre/post migration)
-    - Unintended formatting or logic errors
+    Compare values between SAP ECC and SAP SF datasets to identify mismatches:
 
-    Upload the ECC source and SF target extracts for comparison.
+    **We Monitor:**
+    - Presence of missing/mismatched records
+    - Variations in numeric values (e.g. salary, bonus)
+    - Format & date inconsistencies
+    - Record status mismatches (active vs inactive)
+
+    **How We Help:**
+    - Auto-generate variance reports
+    - Highlight critical fields
+    - Support delta resolution tracking
     """)
+    st.video("https://www.youtube.com/watch?v=4ZJQ0XQ1-HE")
 
     st.file_uploader("Upload SAP ECC Extract", type=["csv", "xlsx"], key="source")
     st.file_uploader("Upload SAP SF Extract", type=["csv", "xlsx"], key="target")
