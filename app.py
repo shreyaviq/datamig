@@ -113,8 +113,10 @@ elif page == "Validation":
 
     if st.button("Run Validation"):
         st.success("Validation completed with 96% pass rate.")
-        st.markdown("• 4 critical issues\\n• 8 warnings")
-• 8 warnings")
+        st.markdown(\""" 
+• 4 critical issues  
+• 8 warnings 
+\""")
     st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------- Variance Monitoring Page ----------
