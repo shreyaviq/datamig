@@ -1,92 +1,119 @@
 
 import streamlit as st
-import pandas as pd
+from PIL import Image
 
-st.set_page_config(page_title="Quantumela SAP Tool", page_icon="📊", layout="wide")
+# Load and apply custom CSS styling for a website-like look
+def set_background():
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }}
+        .main-title {{
+            font-size: 3em;
+            font-weight: 700;
+            color: #ffffff;
+            padding: 0.5em 0;
+            text-shadow: 2px 2px 8px #000000;
+        }}
+        .section-box {{
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 2em;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+            margin-bottom: 2em;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
-# --- Logo and Branding ---
-col1, col2 = st.columns([0.15, 0.85])
-with col1:
-    st.image("Quantumela-logo.webp", width=100)
-with col2:
-    st.title("Quantumela: SAP EC Migration & Variance Monitor Tool")
-    st.caption("Effortless, Accurate, and Insight-Driven SAP Data Transformation")
+set_background()
+
+# Load logo
+logo = Image.open("Quantumela-logo.webp")
+st.image(logo, width=120)
+
+# Main title
+st.markdown('<div class="main-title">Quantumela: SAP EC Migration & Variance Monitor Tool</div>', unsafe_allow_html=True)
 
 # Sidebar Navigation
-st.sidebar.image("Quantumela-logo.webp", width=120)
+st.sidebar.image(logo, width=100)
 st.sidebar.title("Navigation")
 page = st.sidebar.radio("Go to", ["Overview", "Data Migration", "Validation", "Variance Monitoring"])
 
 if page == "Overview":
+    st.markdown('<div class="section-box">', unsafe_allow_html=True)
     st.header("🔷 About Our Solution")
     st.markdown("""
-    Welcome to **Quantumela's** SAP SuccessFactors data migration platform. We specialize in secure and scalable data migration and monitoring solutions tailored for SAP landscapes.
+    Quantumela offers a premium platform for **SAP ECC to SAP SuccessFactors** migration with full validation and monitoring capabilities.
 
-    ### 🌐 What We Do
-    - **Employee Central Data Migration**
-        - Migrate Foundation, Position, and Employee objects
-        - Integrate EC Payroll and Time & Attendance
+    ### 🌐 Key Services:
+    - **Employee Central Data Migration** (Foundation, Position, Employee, Payroll, Time & Attendance)
+    - **Automated Data Validation** with rules, formats, and business logic checks
+    - **Variance Monitoring** across source and target systems
 
-    - **Automated Validation**
-        - Schema compliance checks
-        - Field-level and cross-table rule validation
-        - Summary reports
-
-    - **Variance Monitoring**
-        - Compare SAP ECC vs SAP SF
-        - Track field mismatches, missing data, formatting errors
-
-    ### 💡 Why Quantumela?
-    - Industry-aligned best practices
-    - Custom logic mapping and transformation
-    - Clean, auditable variance reports
+    Our tools ensure accuracy, traceability, and business continuity.
     """)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 elif page == "Data Migration":
+    st.markdown('<div class="section-box">', unsafe_allow_html=True)
     st.header("📂 Employee Central Data Migration")
-    st.markdown("Upload source files for migration below. Files remain private and are used only for analysis.")
+    st.markdown("Upload migration files below. Files remain local and secure.")
 
     with st.expander("📁 Foundation Objects"):
-        st.file_uploader("Upload Foundation Data (CSV/XLSX)", type=["csv", "xlsx"], key="foundation")
+        st.file_uploader("Upload Foundation Data", type=["csv", "xlsx"], key="foundation")
 
     with st.expander("📁 Position Objects"):
-        st.file_uploader("Upload Position Data (CSV/XLSX)", type=["csv", "xlsx"], key="position")
+        st.file_uploader("Upload Position Data", type=["csv", "xlsx"], key="position")
 
     with st.expander("📁 Employee Objects"):
-        st.file_uploader("Upload Employee Data (CSV/XLSX)", type=["csv", "xlsx"], key="employee")
+        st.file_uploader("Upload Employee Data", type=["csv", "xlsx"], key="employee")
 
     with st.expander("💰 EC Payroll"):
-        st.file_uploader("Upload Payroll Data (CSV/XLSX)", type=["csv", "xlsx"], key="payroll")
+        st.file_uploader("Upload Payroll Data", type=["csv", "xlsx"], key="payroll")
 
     with st.expander("⏱️ EC Time & Attendance"):
-        st.file_uploader("Upload Time & Attendance (CSV/XLSX)", type=["csv", "xlsx"], key="time")
+        st.file_uploader("Upload Time & Attendance Data", type=["csv", "xlsx"], key="time")
+    st.markdown('</div>', unsafe_allow_html=True)
 
 elif page == "Validation":
+    st.markdown('<div class="section-box">', unsafe_allow_html=True)
     st.header("✅ Validation Services")
     st.markdown("""
-    Quantumela applies data validation rules to catch:
-    - Field-level errors (length, nulls, types)
-    - Missing links between objects
-    - Format mismatches and non-compliant values
+    Ensure your migrated data meets quality and compliance expectations.
+
+    - Null checks, format compliance
+    - Field matching against rule files
+    - Reporting on invalid entries and severity
+
+    Upload data and rules to begin validation.
     """)
-
-    st.file_uploader("Upload Migrated Dataset", type=["csv", "xlsx"], key="val_data")
+    st.file_uploader("Upload Data File", type=["csv", "xlsx"], key="val_data")
     st.file_uploader("Upload Validation Rules (CSV/JSON)", type=["csv", "json"], key="val_rules")
-
     if st.button("Run Validation"):
-        st.success("Validation successful. A detailed report will be generated.")
+        st.success("Validation complete. Summary report available.")
+    st.markdown('</div>', unsafe_allow_html=True)
 
 elif page == "Variance Monitoring":
+    st.markdown('<div class="section-box">', unsafe_allow_html=True)
     st.header("📊 Variance Monitoring")
     st.markdown("""
-    Identify differences between source and target systems:
-    - Missing records
-    - Value differences (pre/post migration)
-    - Unintended formatting or logic errors
+    Compare SAP ECC and SAP SF data for inconsistencies:
+
+    - Identify missing rows and unmatched values
+    - See field-level changes
+    - Maintain audit readiness
+
+    Upload ECC and SF files to begin comparison.
     """)
-
-    st.file_uploader("Upload SAP ECC Extract", type=["csv", "xlsx"], key="source")
-    st.file_uploader("Upload SAP SF Extract", type=["csv", "xlsx"], key="target")
-
-    if st.button("Run Variance Analysis"):
-        st.success("Variance check complete. Delta report will be displayed here.")
+    st.file_uploader("Upload SAP ECC Extract", type=["csv", "xlsx"], key="ecc")
+    st.file_uploader("Upload SAP SF Extract", type=["csv", "xlsx"], key="sf")
+    if st.button("Compare Now"):
+        st.success("Comparison completed. Differences will be visualized here.")
+    st.markdown('</div>', unsafe_allow_html=True)
