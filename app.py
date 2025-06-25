@@ -3,7 +3,6 @@ from PIL import Image
 import pandas as pd
 import io
 from streamlit_extras.metric_cards import style_metric_cards
-from streamlit_extras.animated_number import animated_number
 
 # ---------- Styling ----------
 def set_background():
@@ -82,12 +81,6 @@ elif page == "Dashboard":
         st.metric("Detected Variances", value="12")
 
     style_metric_cards()
-
-    st.markdown("---")
-    st.subheader("📈 Live Metric Simulation")
-    animated_number("Validated Records", 1800, format="{:,.0f}")
-    animated_number("Clean Records %", 96, format="{:.1f}%")
-    animated_number("Variance Reduction", 82, format="{:.0f}%")
     st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------- Other sections remain unchanged... (add previous working logic here) --
