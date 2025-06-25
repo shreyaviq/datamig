@@ -50,14 +50,6 @@ elif page == "Data Migration":
     st.header("📂 Employee Central Data Migration")
     st.markdown("""
     Upload source files for migration below. Files remain private and are used only for analysis.
-if page == "Data Migration":
-    st.header("📂 Employee Central Data Migration")
-
-    # Diagram 1
-    st.image("Employee_Central_Data_Migration.png", caption="Employee Central Migration Architecture", use_column_width=True)
-
-    # Diagram 2
-    st.image("Employee_Central_Data_Migration2.png", caption="Process Flow for EC Object Handling", use_column_width=True)
 
     **Services We Provide:**
     - Object-wise transformation based on SAP EC schema
@@ -146,6 +138,16 @@ elif page == "Variance Monitoring":
     st.video("https://www.youtube.com/watch?v=4ZJQ0XQ1-HE")
 
     st.file_uploader("Upload SAP ECC Extract", type=["csv", "xlsx"], key="source")
+
+if page == "Data Migration":
+    st.header("📂 Employee Central Data Migration")
+
+    # Diagram 1
+    st.image("Employee_Central_Data_Migration.png", caption="Employee Central Migration Architecture", use_column_width=True)
+
+    # Diagram 2
+    st.image("Employee_Central_Data_Migration2.png", caption="Process Flow for EC Object Handling", use_column_width=True)
+
     st.file_uploader("Upload SAP SF Extract", type=["csv", "xlsx"], key="target")
 
     if st.button("Run Variance Analysis"):
